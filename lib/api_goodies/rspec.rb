@@ -6,6 +6,8 @@ RSpec.configure do |config|
   require 'api_goodies/rspec/shared_examples/is_soft_deletable'
   require 'api_goodies/rspec/shared_examples/belongs_to_with'
   require 'api_goodies/rspec/shared_examples/has_default_status'
+  require 'api_goodies/rspec/shared_examples/has_default_status'
+  require 'api_goodies/rspec/shared_examples/scope_uuid'
   require 'api_goodies/rspec/helpers'
   config.extend APIGoodies::AnonymousModel
   config.extend APIGoodies::RSpec::Helpers

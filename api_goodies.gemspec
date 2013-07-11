@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sqlite3"
   spec.add_runtime_dependency "shoulda-matchers", "~> 1.3.0"
   spec.add_runtime_dependency "rake-hooks", "~> 1.0"
+  spec.add_runtime_dependency "uuid"
 end
