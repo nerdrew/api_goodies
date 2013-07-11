@@ -56,7 +56,7 @@ end
 
 shared_examples 'has_and_belongs_to_many_with' do |attribute, association|
   let(:association_attribute) { :"#{association}_#{attribute.to_s.pluralize}" }
-  let(:association_id) { :"#{association}_id" }
+  let(:association_ids) { :"#{association.to_s.singularize}_ids" }
 
   it 'creates an attr_writer for attribute named <assocation_name>_<attribute_name pluralized>' do
     subject.respond_to?(:"#{association_attribute}=").should == true
@@ -84,22 +84,21 @@ shared_examples 'has_and_belongs_to_many_with' do |attribute, association|
   end
 
   describe 'before_validation' do
-    xit 'sets (or overwrites) *_id from *_<attribute_name>' do
-      baz1 = build_valid_model(association)
-      baz1.save!
-      baz2 = build_valid_model(association)
-      baz2.save!
-      subject.attributes = {association => baz1, association_attribute => baz2.send(attribute)}
-      subject.send(association_id).should == baz1.id
+    it 'sets (or overwrites) *_id from *_<attribute_name>' do
+      baz1 = create_valid_model(association)
+      baz2 = create_valid_model(association)
+      subject.attributes = {association => [baz1], association_attribute => [baz2.send(attribute)]}
+      subject.send(association_ids).should == [baz1.id]
       subject.valid?
-      subject.send(association_id).should == baz2.id
+      subject.send(association_ids).should == [baz2.id]
     end
 
-    xit 'does not clear *_id if *_<attribute_name> is nil' do
-      subject.attributes = {association_id => 5, association_attribute => nil}
-      subject.send(association_id).should == 5
+    it 'does not clear *_id if *_<attribute_name> is nil' do
+      baz = create_valid_model(association)
+      subject.attributes = {association_ids => [baz.id], association_attribute => nil}
+      subject.send(association_ids).should == [baz.id]
       subject.valid?
-      subject.send(association_id).should == 5
+      subject.send(association_ids).should == [baz.id]
     end
   end
 end
