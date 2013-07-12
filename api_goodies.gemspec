@@ -25,8 +25,14 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "uuid"
   spec.add_runtime_dependency "rake"
   spec.add_runtime_dependency "rspec-rails", "~> 2.0"
-  spec.add_runtime_dependency "rails", ">= 3.2.0"
-  spec.add_runtime_dependency "sqlite3"
+  spec.add_runtime_dependency "activerecord", ">= 3.2.0"
+  spec.add_runtime_dependency "activesupport", ">= 3.2.0"
+  if RUBY_PLATFORM == 'java'
+    spec.add_runtime_dependency 'activerecord-jdbcsqlite3-adapter'
+    spec.add_runtime_dependency 'jruby-openssl'
+  else
+    spec.add_runtime_dependency "sqlite3"
+  end
   spec.add_runtime_dependency "shoulda-matchers", "~> 1.3.0"
   spec.add_runtime_dependency "rake-hooks", "~> 1.0"
   spec.add_runtime_dependency "uuid"
