@@ -55,7 +55,7 @@ shared_examples 'polymorphic_belongs_to_with' do |attribute, association|
 end
 
 shared_examples 'has_and_belongs_to_many_with' do |attribute, association|
-  let(:association_attribute) { :"#{association}_#{attribute.to_s.pluralize}" }
+  let(:association_attribute) { :"#{association.to_s.singularize}_#{attribute.to_s.pluralize}" }
   let(:association_ids) { :"#{association.to_s.singularize}_ids" }
 
   it 'creates an attr_writer for attribute named <assocation_name>_<attribute_name pluralized>' do
