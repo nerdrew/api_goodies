@@ -1,4 +1,4 @@
-shared_examples 'belongs_to_with' do |attribute, association|
+shared_examples 'api_goodies gem belongs_to_with' do |attribute, association|
   let(:association_attribute) { :"#{association}_#{attribute}" }
   let(:association_id) { :"#{association}_id" }
 
@@ -44,8 +44,8 @@ shared_examples 'belongs_to_with' do |attribute, association|
   end
 end
 
-shared_examples 'polymorphic_belongs_to_with' do |attribute, association|
-  it_behaves_like 'belongs_to_with', attribute, association
+shared_examples 'api_goodies gem polymorphic_belongs_to_with' do |attribute, association|
+  it_behaves_like 'api_goodies gem belongs_to_with', attribute, association
 
   it 'searches the associated class by uuid' do
     baz = create_valid_model(association)
@@ -54,7 +54,7 @@ shared_examples 'polymorphic_belongs_to_with' do |attribute, association|
   end
 end
 
-shared_examples 'has_and_belongs_to_many_with' do |attribute, association|
+shared_examples 'api_goodies gem has_and_belongs_to_many_with' do |attribute, association|
   let(:association_attribute) { :"#{association.to_s.singularize}_#{attribute.to_s.pluralize}" }
   let(:association_ids) { :"#{association.to_s.singularize}_ids" }
 

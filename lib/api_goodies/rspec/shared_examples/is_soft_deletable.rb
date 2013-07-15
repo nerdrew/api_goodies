@@ -1,4 +1,4 @@
-shared_examples 'is_soft_deletable' do
+shared_examples 'api_goodies gem is_soft_deletable' do
   describe "validations" do
     it { should ensure_inclusion_of(:deleted).in_array([true, false]) }
   end

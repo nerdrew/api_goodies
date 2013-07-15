@@ -1,5 +1,4 @@
-# TODO add api_goodies gem to shared example names
-shared_examples "has_uuid" do
+shared_examples "api_goodies gem has_uuid" do
   describe 'validations' do
     describe 'uniqueness' do
       it 'allows a unique uuid' do

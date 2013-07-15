@@ -13,7 +13,7 @@ describe APIGoodies::ScopeUUID do
 
   subject { Foo.new }
   let(:described_class) { Foo }
-  it_behaves_like 'scope_uuid', :bar do
+  it_behaves_like 'api_goodies gem scope_uuid', :bar do
     valid_model(:bar) {|attributes = {}| Bar.new attributes.reverse_merge(uuid: SecureRandom.uuid) }
   end
 end

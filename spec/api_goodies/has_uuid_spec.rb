@@ -10,5 +10,5 @@ describe APIGoodies::HasUuid do
 
   subject { ElegantGermanBeerStein.new }
   let(:described_class) { ElegantGermanBeerStein }
-  it_behaves_like 'has_uuid'
+  it_behaves_like 'api_goodies gem has_uuid'
 end

@@ -12,5 +12,5 @@ describe APIGoodies::HasDefaultStatus do
   end
 
   subject { Modely.new }
-  it_behaves_like 'has_default_status'
+  it_behaves_like 'api_goodies gem has_default_status'
 end

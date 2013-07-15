@@ -1,4 +1,4 @@
-shared_examples 'has_default_status' do
+shared_examples 'api_goodies gem has_default_status' do
   let(:active) { Status.new }
   before do
     Status.stub(:active) { active }

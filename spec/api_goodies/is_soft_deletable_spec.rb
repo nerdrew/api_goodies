@@ -10,5 +10,5 @@ describe APIGoodies::IsSoftDeletable do
 
   subject { RandomDude.new }
   let(:described_class) { RandomDude }
-  it_behaves_like 'is_soft_deletable'
+  it_behaves_like 'api_goodies gem is_soft_deletable'
 end

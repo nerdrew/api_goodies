@@ -12,7 +12,7 @@ describe APIGoodies::BelongsToWith do
       belongs_to_with :uuid, :baz
     end
 
-    it_behaves_like 'belongs_to_with', :uuid, :baz do
+    it_behaves_like 'api_goodies gem belongs_to_with', :uuid, :baz do
       valid_model(:baz) { Baz.new uuid: SecureRandom.uuid }
       subject { Foo.new }
     end
@@ -50,7 +50,7 @@ describe APIGoodies::BelongsToWith do
       has_and_belongs_to_many_with :uuid, :bazs
     end
 
-    it_behaves_like 'has_and_belongs_to_many_with', :uuid, :bazs do
+    it_behaves_like 'api_goodies gem has_and_belongs_to_many_with', :uuid, :bazs do
       valid_model(:bazs) { Baz.new(uuid: SecureRandom.uuid) }
       subject { Foo.new }
     end

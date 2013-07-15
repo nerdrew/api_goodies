@@ -1,4 +1,4 @@
-shared_examples "scope_uuid" do |association, options = {}|
+shared_examples "api_goodies gem scope_uuid" do |association, options = {}|
   let(:scope_name) { :"with_#{association}_uuid" }
 
   describe '.scope_uuid' do
