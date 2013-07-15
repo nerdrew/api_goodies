@@ -7,6 +7,7 @@ describe APIGoodies::BelongsToWith do
     end
 
     build_model :foo do
+      extend APIGoodies::BelongsToWith
       integer :baz_id
 
       belongs_to_with :uuid, :baz
@@ -18,23 +19,24 @@ describe APIGoodies::BelongsToWith do
     end
   end
 
-  #describe 'polymorphic belongs_to associations' do
-    #build_model :baz do
-      #string :uuid
-    #end
+  describe 'polymorphic belongs_to associations' do
+    build_model :baz do
+      string :uuid
+    end
 
-    #build_model :foo do
-      #integer :barable_id
-      #string :barable_type
+    build_model :foo do
+      extend APIGoodies::BelongsToWith
+      integer :barable_id
+      string :barable_type
 
-      #belongs_to_with :uuid, :barable, polymorphic: true
-    #end
+      belongs_to_with :uuid, :barable, polymorphic: true
+    end
 
-    #it_behaves_like 'polymorphic_belongs_to_with', :uuid, :barable do
-      #valid_model(:barable) { Baz.new uuid: SecureRandom.uuid }
-      #subject { Foo.new }
-    #end
-  #end
+    it_behaves_like 'api_goodies gem polymorphic_belongs_to_with', :uuid, :barable do
+      valid_model(:barable) { Baz.new uuid: SecureRandom.uuid }
+      subject { Foo.new }
+    end
+  end
 
   describe 'has_and_belongs_to_many_with' do
     build_model :baz do
@@ -47,6 +49,7 @@ describe APIGoodies::BelongsToWith do
     end
 
     build_model :foo do
+      extend APIGoodies::BelongsToWith
       has_and_belongs_to_many_with :uuid, :bazs
     end
 

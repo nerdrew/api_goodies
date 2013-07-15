@@ -6,6 +6,7 @@ describe APIGoodies::ScopeUUID do
   end
 
   build_model :foo do
+    extend APIGoodies::ScopeUUID
     integer :bar_id
     belongs_to :bar
     scope_uuid :bar

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe APIGoodies::HasUuid do
   build_model :elegant_german_beer_stein do
+    extend APIGoodies::HasUuid
     string :uuid, limit: 36, null: false, default: ""
     boolean :foo
 
