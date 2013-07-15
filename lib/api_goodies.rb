@@ -22,5 +22,3 @@ require 'api_goodies/railtie' if $rails_rake_task
 
 module APIGoodies
 end
-
-require 'pry-nav'
