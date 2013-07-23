@@ -5,7 +5,6 @@ if ActiveSupport::VERSION::MAJOR < 4
   require 'active_support/core_ext/logger'
 end
 require 'api_goodies/belongs_to_with'
-require 'api_goodies/has_and_belongs_to_many_with'
 require 'api_goodies/has_uuid'
 require 'api_goodies/is_soft_deletable'
 require 'api_goodies/has_default_status'

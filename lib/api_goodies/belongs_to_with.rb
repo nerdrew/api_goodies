@@ -46,12 +46,17 @@ module APIGoodies
     def belongs_to_with(attribute_name, name, options = {})
       belongs_to name, options
 
+      attr_writer :"#{name}_#{attribute_name}"
+      before_validation :"set_#{name}_from_#{attribute_name}"
+      alias_method :"old_#{name}", :"#{name}"
+
+      if attribute_name.to_s == 'uuid'
+        finder = "find_uuid(@#{name}_#{attribute_name})"
+      else
+        finder = "where(#{attribute_name}: @#{name}_#{attribute_name}).first"
+      end
+
       class_eval <<-CODE, __FILE__, __LINE__ + 1
-        attr_writer :#{name}_#{attribute_name}
-        before_validation :set_#{name}_from_#{attribute_name}
-
-        alias_method :old_#{name}, :#{name}
-
         def #{name}
           if @#{name}_#{attribute_name}.nil?
             old_#{name}
@@ -70,7 +75,29 @@ module APIGoodies
           if @#{name}_#{attribute_name}
             other_class = association(:"#{name}").klass
             return if other_class.nil?
-            self.#{name} = other_class.where(#{attribute_name}: @#{name}_#{attribute_name}).first
+            self.#{name} = other_class.#{finder}
+          end
+        end
+      CODE
+    end
+
+    def belongs_to_with!(attribute_name, name, options = {})
+      belongs_to_with attribute_name, name, options
+
+      if attribute_name.to_s == 'uuid'
+        finder = "find_uuid!(@#{name}_#{attribute_name})"
+      else
+        finder = "where(#{attribute_name}: @#{name}_#{attribute_name}).first!"
+      end
+
+      class_eval <<-CODE, __FILE__, __LINE__ + 1
+        private
+
+        def set_#{name}_from_#{attribute_name}
+          if @#{name}_#{attribute_name}
+            other_class = association(:"#{name}").klass
+            return if other_class.nil?
+            self.#{name} = other_class.#{finder}
           end
         end
       CODE

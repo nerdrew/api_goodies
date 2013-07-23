@@ -47,9 +47,19 @@ end
 shared_examples 'api_goodies gem polymorphic_belongs_to_with' do |attribute, association|
   it_behaves_like 'api_goodies gem belongs_to_with', attribute, association
 
-  it 'searches the associated class by uuid' do
+  it "searches the associated class by #{attribute}" do
     baz = create_valid_model(association)
     subject.attributes = {"#{association}_#{attribute}" => baz.send(attribute), "#{association}_type" => baz.class.to_s}
     subject.send(association).should == baz
+  end
+end
+
+shared_examples 'api_goodies gem belongs_to_with!' do |attribute, association|
+  it_behaves_like 'api_goodies gem belongs_to_with', attribute, association
+
+  it "raises if it cannot find the #{association}" do
+    baz = build_valid_model(association)
+    subject.attributes = {"#{association}_#{attribute}" => baz.send(attribute)}
+    lambda { subject.valid? }.should raise_exception ActiveRecord::RecordNotFound
   end
 end
