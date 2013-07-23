@@ -5,6 +5,7 @@ module APIGoodies
         extend APIGoodies::HasUuid
         extend APIGoodies::IsSoftDeletable
         extend APIGoodies::BelongsToWith
+        extend APIGoodies::HasAndBelongsToManyWith
         extend APIGoodies::HasDefaultStatus
         extend APIGoodies::ScopeUUID
       end
