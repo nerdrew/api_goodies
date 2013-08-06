@@ -87,7 +87,11 @@ module APIGoodies
       if attribute_name.to_s == 'uuid'
         finder = "find_uuid!(@#{name}_#{attribute_name})"
       else
-        finder = "where(#{attribute_name}: @#{name}_#{attribute_name}).first!"
+        replacements = {
+          attribute: attribute_name,
+          value: "@#{name}_#{attribute_name}"
+        }
+        finder = 'where(%{attribute}: %{value}).first || raise(APIGoodies::RecordNotFound.new("Could not find #{other_class} with %{attribute}: #{%{value}}", other_class, %{attribute}: %{value}))' % replacements
       end
 
       class_eval <<-CODE, __FILE__, __LINE__ + 1

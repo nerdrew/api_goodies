@@ -60,6 +60,18 @@ shared_examples 'api_goodies gem belongs_to_with!' do |attribute, association|
   it "raises if it cannot find the #{association}" do
     baz = build_valid_model(association)
     subject.attributes = {"#{association}_#{attribute}" => baz.send(attribute)}
-    lambda { subject.valid? }.should raise_exception ActiveRecord::RecordNotFound
+    lambda { subject.valid? }.should raise_exception APIGoodies::RecordNotFound
+  end
+
+  it 'sets the class and attribute => value on the error' do
+    baz = build_valid_model(association)
+    subject.attributes = {"#{association}_#{attribute}" => baz.send(attribute)}
+    begin
+      subject.valid?
+    rescue APIGoodies::RecordNotFound => e
+      e.klass.should == baz.class
+      e.attribute.should == attribute.to_sym
+      e.value.should == baz.send(attribute)
+    end
   end
 end

@@ -9,6 +9,7 @@ require 'api_goodies/has_uuid'
 require 'api_goodies/is_soft_deletable'
 require 'api_goodies/has_default_status'
 require 'api_goodies/scope_uuid'
+require 'api_goodies/record_not_found'
 require 'api_goodies/railtie' if defined?(Rails::Railtie)
 
 module APIGoodies

@@ -66,13 +66,23 @@ shared_examples "api_goodies gem has_uuid" do
     it 'raises RecordNotFound if it cannot find the uuid' do
       lambda do
         described_class.find_uuid!('01234567-890a-bcde-f012-3456789abcde')
-      end.should raise_exception ActiveRecord::RecordNotFound
+      end.should raise_exception APIGoodies::RecordNotFound
     end
 
     it 'raises RecordNotFound if the uuid is invalid' do
       lambda do
         described_class.find_uuid!('A')
-      end.should raise_exception ActiveRecord::RecordNotFound
+      end.should raise_exception APIGoodies::RecordNotFound
+    end
+
+    it 'set the class and uuid as attributes on the error' do
+      begin
+        described_class.find_uuid!('A')
+      rescue APIGoodies::RecordNotFound => e
+        e.klass.should == described_class
+        e.attribute.should == :uuid
+        e.value.should == 'A'
+      end
     end
   end
 

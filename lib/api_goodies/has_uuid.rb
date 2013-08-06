@@ -22,7 +22,7 @@ module APIGoodies
       end
 
       def find_uuid!(uuid)
-        find_uuid(uuid) || raise(ActiveRecord::RecordNotFound.new "Couldn't find #{name} with id=#{uuid}")
+        find_uuid(uuid) || raise(APIGoodies::RecordNotFound.new "Couldn't find #{name} with id=#{uuid}", self, uuid: uuid)
       end
     end
 
