@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rspec-rails", "~> 2.0"
   spec.add_runtime_dependency "activerecord", ">= 3.2.0"
   spec.add_runtime_dependency "activesupport", ">= 3.2.0"
-  spec.add_runtime_dependency "shoulda-matchers", "~> 1.3.0"
+  spec.add_runtime_dependency "shoulda-matchers", "~> 2.4.0"
   spec.add_runtime_dependency "rake-hooks", "~> 1.0"
   spec.add_runtime_dependency "uuid"
 end

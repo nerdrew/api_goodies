@@ -5,8 +5,6 @@ module APIGoodies
 
       scope :active, ->{ where(deleted: false) }
 
-      validates :deleted, inclusion: { in: [true, false] }
-
       begin
         attr_protected :deleted, :deleted_at
       rescue RuntimeError => e

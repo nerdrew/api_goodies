@@ -2,6 +2,7 @@ require "api_goodies/version"
 require 'active_record'
 require 'active_support/inflector'
 if ActiveSupport::VERSION::MAJOR < 4
+  require 'active_record/errors'
   require 'active_support/core_ext/logger'
 end
 require 'api_goodies/belongs_to_with'
