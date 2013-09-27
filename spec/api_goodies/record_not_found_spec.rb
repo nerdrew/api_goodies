@@ -14,4 +14,9 @@ describe APIGoodies::RecordNotFound do
       end.to raise_exception ArgumentError, 'finder key must respond to to_sym: 1'
     end
   end
+
+  describe '#to_s' do
+    subject { described_class.new 'why' }
+    its(:to_s) { should == 'why' }
+  end
 end
