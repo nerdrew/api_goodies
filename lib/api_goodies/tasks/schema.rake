@@ -1,4 +1,4 @@
-if Rails.env.development?
+if defined?(Rails) && Rails.env.development?
   require 'rake/hooks'
 
   after :"db:schema:dump" do
