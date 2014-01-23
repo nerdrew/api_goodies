@@ -1,4 +1,9 @@
 shared_examples 'api_goodies gem is_soft_deletable' do
+  describe "validations" do
+    # TODO this does not work with shoulda right now
+    # it { should ensure_inclusion_of(:deleted).in_array([true, false]) }
+  end
+
   describe ".active" do
     it "returns all records which 'deleted' column is set to false" do
       active = build_valid_model

@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "appraisal", "~> 0.5.1"
   spec.add_development_dependency "pry-nav"
   spec.add_development_dependency "rspec-rails", "~> 2.0"
-  spec.add_development_dependency "shoulda-matchers", "~> 2.4.0"
+  spec.add_development_dependency "shoulda-matchers", "~> 2.5.0"
   spec.add_development_dependency "rake-hooks", "~> 1.0"
   spec.add_runtime_dependency "uuid"
   spec.add_runtime_dependency "rake"

@@ -56,6 +56,16 @@ shared_examples "api_goodies gem has_uuid" do
     end
   end
 
+  describe '.find_uuids' do
+    it 'returns the records matching the uuids' do
+      model1 = build_valid_model
+      model1.save!
+      model2 = build_valid_model
+      model2.save!
+      described_class.find_uuids(model1.uuid, model2.uuid).should =~ [model1, model2]
+    end
+  end
+
   describe '.find_uuid!' do
     it 'calls .find_uuid' do
       collection = double

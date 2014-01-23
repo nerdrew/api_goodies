@@ -24,6 +24,10 @@ module APIGoodies
       def find_uuid!(uuid)
         find_uuid(uuid) || raise(APIGoodies::RecordNotFound.new "Couldn't find #{name} with id=#{uuid}", self, uuid: uuid)
       end
+
+      def find_uuids(*uuids)
+        where(uuid: uuids.flatten.select {|uuid| UUID.validate uuid }).to_a
+      end
     end
 
     module InstanceMethods
