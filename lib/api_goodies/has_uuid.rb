@@ -8,12 +8,6 @@ module APIGoodies
 
       before_validation :assign_uuid, on: :create
       validates :uuid, uniqueness: true, on: :create, if: ->(model){ model.valid_uuid_format? }
-
-      begin
-        attr_protected :uuid
-      rescue RuntimeError => e
-        raise e if e.message !~ /`attr_protected`/
-      end
     end
 
     module ClassMethods
