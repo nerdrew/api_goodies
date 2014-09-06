@@ -8,12 +8,6 @@ module APIGoodies
       scope :active, ->{ where(deleted: false) }
 
       define_model_callbacks :soft_delete
-
-      begin
-        attr_protected :deleted, :deleted_at
-      rescue RuntimeError => e
-        raise e if e.message !~ /`attr_protected`/
-      end
     end
 
     module ClassMethods
